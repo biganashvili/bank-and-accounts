@@ -1,0 +1,37 @@
+syntax = "proto3";
+package bank_and_accounts;
+option go_package = "/proto_files";
+
+message Account {
+    string id=1;
+    string walletID=2;
+    uint64 balance =3;
+}
+
+service AccountService {
+    rpc CreateAccount(CreateAccountParams) returns (Account);
+    rpc GetAccounts(GetAccountsParams) returns (stream Account);
+    rpc GenerateAddress (GenerateAddressParams)returns(Account);
+    rpc Deposit (DepositParams) returns (Account);
+    rpc Withdrawal (WithdrawalParams) returns (Account);
+}
+
+message CreateAccountParams {
+}
+
+message GetAccountsParams {
+}
+
+message GenerateAddressParams {
+    string id=1;
+}
+
+message DepositParams {
+    string id=1;
+    uint64 amount =2;
+}
+
+message WithdrawalParams {
+    string id=1;
+    uint64 amount =2;
+}
